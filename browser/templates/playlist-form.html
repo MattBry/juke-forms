@@ -1,0 +1,19 @@
+<div class="well" ng-controller="PlaylistCtrl">
+    <form class="form-horizontal" name="newPlaylistForm">
+        <fieldset>
+            <legend>New Playlist</legend>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Title</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model="playlistName" ng-required="true" ng-maxlength="16" name="name">
+                    <div ng-show="newPlaylistForm.name.$invalid && newPlaylistForm.name.$dirty">Please enter a short title.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-10 col-xs-offset-2">
+                    <button ng-disabled="newPlaylistForm.$invalid" type="submit" class="btn btn-success" ng-click="newPlaylist(playlistName); playlistName = null; newPlaylistForm.$setPristine()">Create Playlist</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
