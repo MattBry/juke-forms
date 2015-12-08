@@ -3,5 +3,9 @@ app.config(function ($stateProvider) {
 		url: '/playlists/new',
 		templateUrl: '/templates/playlist-form.html',
 		controller: 'PlaylistCtrl'
+	}).state('Playlist',{
+		url: 'playlists/:playlistId',
+		templateUrl: '/templates/playlist.html',
+		controller: 'PlaylistCtrl'
 	});
 });

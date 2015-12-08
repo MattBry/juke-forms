@@ -4,14 +4,6 @@ app.factory('PlaylistFactory', function ($http) {
 
     var PlaylistFactory = {};
 
-    PlaylistFactory.fetchAll = function () {
-        return $http.get('/api/playlists')
-        .then(function (response) {
-            angular.copy(response.data, cachedPlaylists);
-            return cachedPlaylists;
-        });
-    };
-
     PlaylistFactory.create = function (data) {
         return $http.post('/api/playlists', data)
         .then(function (response) {
@@ -20,6 +12,31 @@ app.factory('PlaylistFactory', function ($http) {
             return playlist;
         });
     };
+
+    PlaylistFactory.fetchAll = function () {
+        return $http.get('/api/playlists')
+        .then(function (response) {
+            angular.copy(response.data, cachedPlaylists);
+            return cachedPlaylists;
+        });
+    };
+
+    PlaylistFactory.fetchByID = function (id) {
+        return $http.get('/api/playlists/' + id)
+        .then(function (response) {
+            return response.data;
+        })
+        .then(function(playlist){
+            return playlist;
+        });
+    };
+
+    PlaylistFactory.addSong = function(playlist, song){
+        return $http.post('api/playlists/' + playlist + '/songs', {'song': song})
+        .then(function(response){
+            return response.body;
+        })
+    }
 
     return PlaylistFactory;
 
